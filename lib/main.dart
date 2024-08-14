@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:servicemen_listing/core/utils/app_detail.dart';
 import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
+import 'package:servicemen_listing/features/app_root/application/app_root_bloc.dart';
 import 'package:servicemen_listing/features/onbording/application/on_bording_bloc.dart';
 import 'package:servicemen_listing/features/splash/presentation/views/splash_screen.dart';
 
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: [
         //ON BORDING BLOC
         BlocProvider(create: (context) => OnBordingBloc()),
+
+        //APP ROOT BLOC
+        BlocProvider(create: (context) => AppRootBloc()),
       ],
       child: MaterialApp(
         title: AppDetails.appName,

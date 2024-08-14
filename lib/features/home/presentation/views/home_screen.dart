@@ -14,49 +14,50 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldBg,
-      appBar: AppBar(
-        backgroundColor: AppColors.scaffoldBg,
-        surfaceTintColor: AppColors.scaffoldBg,
-        automaticallyImplyLeading: false,
-        elevation: 10,
-        shadowColor: AppColors.primaryColor.withOpacity(.1),
-        toolbarHeight: 70,
-        titleSpacing: 8,
-        leadingWidth: 60,
-        leading: Container(
-          margin: const EdgeInsets.only(left: 12),
-          child: Image.asset(
-            AppImages.profileImage,
-          ),
-        ),
-        title: const Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Welcome Back!',
-              style: TextStyle(
-                color: Color(0xff656565),
-                fontSize: 12,
-                fontFamily: AppFonts.inter,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Gap(1),
-            Text(
-              'Chris Kevin',
-              style: TextStyle(
-                color: Color(0xff121212),
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
       body: CustomScrollView(
         slivers: [
+          SliverAppBar(
+            backgroundColor: AppColors.scaffoldBg,
+            surfaceTintColor: AppColors.scaffoldBg,
+            automaticallyImplyLeading: false,
+            pinned: true,
+            elevation: 10,
+            shadowColor: AppColors.primaryColor.withOpacity(.1),
+            toolbarHeight: 70,
+            titleSpacing: 8,
+            leadingWidth: 60,
+            leading: Container(
+              margin: const EdgeInsets.only(left: 12),
+              child: Image.asset(
+                AppImages.profileImage,
+              ),
+            ),
+            title: const Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Welcome Back!',
+                  style: TextStyle(
+                    color: Color(0xff656565),
+                    fontSize: 12,
+                    fontFamily: AppFonts.inter,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Gap(1),
+                Text(
+                  'Chris Kevin',
+                  style: TextStyle(
+                    color: Color(0xff121212),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
           const SliverToBoxAdapter(
             child: Gap(20),
           ),
@@ -105,9 +106,12 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           const SliverToBoxAdapter(
-            child: Gap(10),
+            child: Gap(14),
           ),
-          const HomeTopServiceGrid()
+          const HomeTopServiceGrid(),
+          const SliverToBoxAdapter(
+            child: Gap(14),
+          ),
         ],
       ),
     );

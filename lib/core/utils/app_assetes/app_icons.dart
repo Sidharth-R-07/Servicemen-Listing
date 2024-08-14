@@ -15,4 +15,12 @@ class AppIcons {
   static const String acService = "assets/icons/ac-service.png";
   static const String carWash = "assets/icons/car-wash.png";
   static const String paintingService = "assets/icons/painting-fillled.png";
+
+  //HOME BOTTOM BAR ICONS
+  static const String homeOutline = "assets/icons/home-outline.png";
+  static const String homeFilled = "assets/icons/home-fill.png";
+  static const String savedOutline = "assets/icons/saved-outline.png";
+  static const String savedFilled = "assets/icons/saved-fill.png";
+  static const String profileOutline = "assets/icons/profile-outline.png";
+  static const String profileFilled = "assets/icons/profile-fill.png";
 }

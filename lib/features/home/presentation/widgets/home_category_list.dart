@@ -11,7 +11,7 @@ class HomeCategoryList extends StatelessWidget {
     return SizedBox(
       height: 80,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) =>
