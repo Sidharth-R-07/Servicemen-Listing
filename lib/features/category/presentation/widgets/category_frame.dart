@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:servicemen_listing/core/services/c_naviagtion.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/features/category/domain/model/category_model.dart';
+import 'package:servicemen_listing/features/category/presentation/views/category_screen.dart';
 
 class CategoryFrame extends StatelessWidget {
   final CategoryModel category;
@@ -9,30 +11,35 @@ class CategoryFrame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 50,
-            height: 50,
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: category.color,
-              borderRadius: BorderRadius.circular(16),
+    return InkWell(
+      onTap: () {
+        CNaviagtion.push(context, CategoryScreen(category: category));
+      },
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: category.color,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Image.asset(category.icon),
             ),
-            child: Image.asset(category.icon),
-          ),
-          const Gap(4),
-          Text(
-            category.title,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: AppColors.primaryColor,
+            const Gap(4),
+            Text(
+              category.title,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: AppColors.primaryColor,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
