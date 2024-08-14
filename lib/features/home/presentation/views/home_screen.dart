@@ -5,6 +5,7 @@ import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
 import 'package:servicemen_listing/features/home/presentation/widgets/home_bannners.dart';
 import 'package:servicemen_listing/features/home/presentation/widgets/home_category_list.dart';
+import 'package:servicemen_listing/features/home/presentation/widgets/home_top_service_grid.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -106,6 +107,7 @@ class HomeScreen extends StatelessWidget {
           const SliverToBoxAdapter(
             child: Gap(10),
           ),
+          const HomeTopServiceGrid()
         ],
       ),
     );
