@@ -4,6 +4,7 @@ import 'package:servicemen_listing/core/utils/app_assetes/app_images.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
 import 'package:servicemen_listing/features/home/presentation/widgets/home_bannners.dart';
+import 'package:servicemen_listing/features/home/presentation/widgets/home_category_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -62,7 +63,49 @@ class HomeScreen extends StatelessWidget {
           //BANNNER
           SliverToBoxAdapter(
             child: HomeBanners(),
-          )
+          ),
+
+          const SliverToBoxAdapter(
+            child: Gap(14),
+          ),
+
+          //ALL CATEGORY
+          const SliverToBoxAdapter(
+            child: Text(
+              "   All Categories",
+              style: TextStyle(
+                color: Color(0xff121212),
+                fontSize: 19,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: Gap(10),
+          ),
+
+          const SliverToBoxAdapter(
+            child: HomeCategoryList(),
+          ),
+
+          const SliverToBoxAdapter(
+            child: Gap(16),
+          ),
+
+          //TOP SERVICES
+          const SliverToBoxAdapter(
+            child: Text(
+              "   Top Services",
+              style: TextStyle(
+                color: Color(0xff121212),
+                fontSize: 19,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: Gap(10),
+          ),
         ],
       ),
     );
