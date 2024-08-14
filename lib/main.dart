@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:servicemen_listing/core/utils/app_detail.dart';
+import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
+import 'package:servicemen_listing/features/onbording/application/on_bording_bloc.dart';
+import 'package:servicemen_listing/features/splash/presentation/views/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +14,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: AppDetails.appName,
-      theme: ThemeData(
-        useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        //ON BORDING BLOC
+        BlocProvider(create: (context) => OnBordingBloc()),
+      ],
+      child: MaterialApp(
+        title: AppDetails.appName,
+        theme: ThemeData(
+          useMaterial3: true,
+          fontFamily: AppFonts.ubuntu,
+        ),
+        home: const SplashScreen(),
       ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
