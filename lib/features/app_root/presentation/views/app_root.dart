@@ -20,6 +20,7 @@ class AppRoot extends StatelessWidget {
     return BlocBuilder<AppRootBloc, AppRootState>(
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: AppColors.scaffoldBg,
           body: _screens[state.currentPageIndex],
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: AppColors.scaffoldBg,

@@ -5,7 +5,7 @@ import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
 import 'package:servicemen_listing/features/app_root/application/app_root_bloc.dart';
 import 'package:servicemen_listing/features/onbording/application/on_bording_bloc.dart';
 import 'package:servicemen_listing/features/splash/presentation/views/splash_screen.dart';
-
+  
 void main() {
   runApp(const MyApp());
 }

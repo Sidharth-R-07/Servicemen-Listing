@@ -123,6 +123,7 @@ class CategoryScreen extends StatelessWidget {
           SliverList.separated(
               itemBuilder: (context, index) => ServiceMenFrame(
                     serviceMen: serviceMenList[index],
+                    isSaved: false,
                   ),
               separatorBuilder: (context, index) => const Gap(22),
               itemCount: serviceMenList.length),

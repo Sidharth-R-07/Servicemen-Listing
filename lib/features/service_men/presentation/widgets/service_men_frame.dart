@@ -5,7 +5,9 @@ import 'package:servicemen_listing/features/service_men/domain/model/service_men
 
 class ServiceMenFrame extends StatelessWidget {
   final ServiceMenModel serviceMen;
-  const ServiceMenFrame({super.key, required this.serviceMen});
+  final bool isSaved;
+  const ServiceMenFrame(
+      {super.key, required this.serviceMen, required this.isSaved});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class ServiceMenFrame extends StatelessWidget {
             child: Image.asset(
               serviceMen.image,
               fit: BoxFit.cover,
-              width: 80,
+              width: 70,
               height: 80,
             ),
           ),
@@ -91,10 +93,16 @@ class ServiceMenFrame extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          const Icon(
-            Icons.bookmark_border_rounded,
-            color: AppColors.buttonColor,
-          ),
+          if (isSaved)
+            const Icon(
+              Icons.bookmark_rounded,
+              color: AppColors.buttonColor,
+            )
+          else
+            const Icon(
+              Icons.bookmark_border_rounded,
+              color: AppColors.buttonColor,
+            ),
         ],
       ),
     );
