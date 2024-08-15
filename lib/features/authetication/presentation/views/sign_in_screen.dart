@@ -6,6 +6,7 @@ import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/widgets/c_button.dart';
 import 'package:servicemen_listing/features/authetication/presentation/views/sign_up_screen.dart';
 import 'package:servicemen_listing/features/authetication/presentation/widgets/c_phone_field.dart';
+import 'package:servicemen_listing/features/authetication/presentation/widgets/otp_bottom_sheet.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -45,9 +46,9 @@ class SignInScreen extends StatelessWidget {
         ],
       ),
       bottomSheet: Container(
-        height: 380,
+        height: 350,
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 26),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 26),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -82,7 +83,17 @@ class SignInScreen extends StatelessWidget {
               width: double.infinity,
               height: 48,
               radius: 16,
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (ctx) => Padding(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(ctx).viewInsets.bottom),
+                    child: const OtpBottomSheet(),
+                  ),
+                );
+              },
               child: const Text(
                 "Receive Verification Code",
                 style: TextStyle(

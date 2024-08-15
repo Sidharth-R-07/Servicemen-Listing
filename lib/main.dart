@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:servicemen_listing/core/utils/app_detail.dart';
+import 'package:servicemen_listing/core/utils/di/injection.dart';
 import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
 import 'package:servicemen_listing/features/app_root/application/app_root_bloc.dart';
 import 'package:servicemen_listing/features/authetication/presentation/views/sign_in_screen.dart';
@@ -8,7 +11,9 @@ import 'package:servicemen_listing/features/authetication/presentation/views/sig
 import 'package:servicemen_listing/features/onbording/application/on_bording_bloc.dart';
 import 'package:servicemen_listing/features/splash/presentation/views/splash_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependency();
   runApp(const MyApp());
 }
 
