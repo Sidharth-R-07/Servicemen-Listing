@@ -15,6 +15,7 @@ class AppRoot extends StatelessWidget {
     SavedItemScreen(),
     ProfileScreen(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppRootBloc, AppRootState>(

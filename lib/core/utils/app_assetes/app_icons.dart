@@ -26,4 +26,7 @@ class AppIcons {
 
   //PROFILE ICONS
   static const String logout = "assets/icons/logout-icon.png";
+
+  //AUTHETICATION
+  static const String india = "assets/icons/india.png";
 }

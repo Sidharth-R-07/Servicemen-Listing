@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:servicemen_listing/core/services/c_naviagtion.dart';
 import 'package:servicemen_listing/core/utils/app_assetes/app_images.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
-import 'package:servicemen_listing/features/home/presentation/views/home_screen.dart';
+import 'package:servicemen_listing/features/app_root/presentation/views/app_root.dart';
 
 class OnBordingPageOne extends StatelessWidget {
   const OnBordingPageOne({super.key});
@@ -30,7 +30,7 @@ class OnBordingPageOne extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                   side: BorderSide(color: Colors.white.withOpacity(.5))),
               onPressed: () {
-                CNaviagtion.pushReplacement(context, const HomeScreen());
+                CNaviagtion.pushReplacement(context, const AppRoot());
               },
               child: const Text(
                 "Skip",

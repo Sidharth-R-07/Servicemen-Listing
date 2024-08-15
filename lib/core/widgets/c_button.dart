@@ -7,6 +7,7 @@ class CButton extends StatelessWidget {
   final double? width;
   final double? height;
   final Color color;
+  final double radius;
   const CButton({
     super.key,
     required this.onPressed,
@@ -14,6 +15,7 @@ class CButton extends StatelessWidget {
     this.width,
     this.height,
     this.color = AppColors.buttonColor,
+    this.radius = 8,
   });
 
   @override
@@ -22,7 +24,7 @@ class CButton extends StatelessWidget {
       elevation: 0,
       highlightElevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(radius),
       ),
       color: color,
       minWidth: width,

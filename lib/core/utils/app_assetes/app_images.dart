@@ -12,4 +12,8 @@ class AppImages {
   static const String userThree = "assets/images/user-three.png";
   static const String userFour = "assets/images/user-four.png";
   static const String userFive = "assets/images/user-five.png";
+
+  //AUTHETICATION SCREEN
+  static const String signIn = "assets/images/sign-in.png";
+  static const String signUp = "assets/images/sign-up.png";
 }
