@@ -6,8 +6,9 @@ import 'package:servicemen_listing/core/utils/app_detail.dart';
 import 'package:servicemen_listing/core/utils/di/injection.dart';
 import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
 import 'package:servicemen_listing/features/app_root/application/app_root_bloc.dart';
+import 'package:servicemen_listing/features/authetication/application/authetication_bloc.dart';
+import 'package:servicemen_listing/features/authetication/domain/i_authetication_facade.dart';
 import 'package:servicemen_listing/features/authetication/presentation/views/sign_in_screen.dart';
-import 'package:servicemen_listing/features/authetication/presentation/views/sign_up_screen.dart';
 import 'package:servicemen_listing/features/onbording/application/on_bording_bloc.dart';
 import 'package:servicemen_listing/features/splash/presentation/views/splash_screen.dart';
 
@@ -29,6 +30,10 @@ class MyApp extends StatelessWidget {
 
         //APP ROOT BLOC
         BlocProvider(create: (_) => AppRootBloc()),
+
+        //AUTHETICATION BLOC
+        BlocProvider(
+            create: (_) => AutheticationBloc(sl<IAutheticationFacade>())),
       ],
       child: MaterialApp(
         title: AppDetails.appName,
@@ -36,8 +41,8 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: AppFonts.ubuntu,
         ),
-        // home: const SplashScreen(),
-        home: const SignInScreen(),
+        home: const SplashScreen(),
+        // home: const SignInScreen(),
       ),
     );
   }

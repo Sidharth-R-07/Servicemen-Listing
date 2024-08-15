@@ -4,7 +4,7 @@ import 'package:servicemen_listing/core/services/c_naviagtion.dart';
 
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/widgets/c_button.dart';
-import 'package:servicemen_listing/features/app_root/presentation/views/app_root.dart';
+import 'package:servicemen_listing/features/authetication/presentation/views/sign_in_screen.dart';
 import 'package:servicemen_listing/features/onbording/application/on_bording_bloc.dart';
 import 'package:servicemen_listing/features/onbording/presentation/widgets/c_page_indicator.dart';
 import 'package:servicemen_listing/features/onbording/presentation/widgets/on_bording_page_one.dart';
@@ -72,7 +72,8 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
                               curve: Curves.easeIn);
                         } else {
                           //NAVIGATE TO NEXT SCREEN
-                          CNaviagtion.pushReplacement(context, const AppRoot());
+                          CNaviagtion.pushReplacement(
+                              context, const SignInScreen());
                         }
                       },
                       height: 46,

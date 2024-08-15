@@ -5,11 +5,13 @@ import 'package:servicemen_listing/core/utils/app_assetes/app_icons.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 
 class CPhoneField extends StatelessWidget {
-  const CPhoneField({super.key});
+  final TextEditingController controller;
+  const CPhoneField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         hintText: "Eg: 6523 - 4566 - 67",
         hintStyle: const TextStyle(

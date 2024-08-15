@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:servicemen_listing/core/services/c_naviagtion.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
 import 'package:servicemen_listing/core/widgets/c_button.dart';
@@ -65,7 +64,9 @@ class OtpBottomSheet extends StatelessWidget {
             width: double.infinity,
             height: 48,
             radius: 16,
-            onPressed: () {},
+            onPressed: () {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
             child: const Text(
               "Verify & Login",
               style: TextStyle(

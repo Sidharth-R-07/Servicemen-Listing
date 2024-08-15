@@ -7,8 +7,22 @@ import 'package:servicemen_listing/core/widgets/c_button.dart';
 import 'package:servicemen_listing/features/authetication/presentation/views/sign_in_screen.dart';
 import 'package:servicemen_listing/features/authetication/presentation/widgets/c_phone_field.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _phoneController = TextEditingController();
+  final formkey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +90,9 @@ class SignUpScreen extends StatelessWidget {
             const Gap(20),
             const Text("Enter phone number", style: TextStyle(fontSize: 14)),
             const Gap(10),
-            const CPhoneField(),
+            CPhoneField(
+              controller: _phoneController,
+            ),
             const Gap(28),
             CButton(
               width: double.infinity,
