@@ -23,4 +23,7 @@ class AppIcons {
   static const String savedFilled = "assets/icons/saved-fill.png";
   static const String profileOutline = "assets/icons/profile-outline.png";
   static const String profileFilled = "assets/icons/profile-fill.png";
+
+  //PROFILE ICONS
+  static const String logout = "assets/icons/logout-icon.png";
 }
