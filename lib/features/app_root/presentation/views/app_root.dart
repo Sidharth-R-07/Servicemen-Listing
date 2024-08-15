@@ -22,45 +22,53 @@ class AppRoot extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.scaffoldBg,
           body: _screens[state.currentPageIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: AppColors.scaffoldBg,
-            selectedItemColor: AppColors.primaryColor,
-            unselectedItemColor: const Color(0xff727171),
-            currentIndex: state.currentPageIndex,
-            onTap: (index) {
-              context
-                  .read<AppRootBloc>()
-                  .add(AppRootEvent.changeCurrentPaget(index));
-            },
-            items: [
-              BottomNavigationBarItem(
-                  icon: Image.asset(
-                    state.currentPageIndex == 0
-                        ? AppIcons.homeFilled
-                        : AppIcons.homeOutline,
-                    width: 25,
-                    height: 25,
-                  ),
-                  label: "Home"),
-              BottomNavigationBarItem(
-                  icon: Image.asset(
-                    state.currentPageIndex == 1
-                        ? AppIcons.savedFilled
-                        : AppIcons.savedOutline,
-                    width: 25,
-                    height: 25,
-                  ),
-                  label: "Saved"),
-              BottomNavigationBarItem(
-                  icon: Image.asset(
-                    state.currentPageIndex == 2
-                        ? AppIcons.profileFilled
-                        : AppIcons.profileOutline,
-                    width: 25,
-                    height: 25,
-                  ),
-                  label: "Profile"),
-            ],
+          bottomNavigationBar: Theme(
+            data: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: BottomNavigationBar(
+              backgroundColor: AppColors.scaffoldBg,
+              selectedItemColor: AppColors.primaryColor,
+              unselectedItemColor: const Color(0xff727171),
+              currentIndex: state.currentPageIndex,
+              selectedFontSize: 12,
+              unselectedFontSize: 12,
+              onTap: (index) {
+                context
+                    .read<AppRootBloc>()
+                    .add(AppRootEvent.changeCurrentPaget(index));
+              },
+              items: [
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      state.currentPageIndex == 0
+                          ? AppIcons.homeFilled
+                          : AppIcons.homeOutline,
+                      width: 25,
+                      height: 25,
+                    ),
+                    label: "Home"),
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      state.currentPageIndex == 1
+                          ? AppIcons.savedFilled
+                          : AppIcons.savedOutline,
+                      width: 25,
+                      height: 25,
+                    ),
+                    label: "Saved"),
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      state.currentPageIndex == 2
+                          ? AppIcons.profileFilled
+                          : AppIcons.profileOutline,
+                      width: 25,
+                      height: 25,
+                    ),
+                    label: "Profile"),
+              ],
+            ),
           ),
         );
       },
