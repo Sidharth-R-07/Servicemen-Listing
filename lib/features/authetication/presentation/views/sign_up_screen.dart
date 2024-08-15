@@ -4,17 +4,17 @@ import 'package:servicemen_listing/core/services/c_naviagtion.dart';
 import 'package:servicemen_listing/core/utils/app_assetes/app_images.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/widgets/c_button.dart';
-import 'package:servicemen_listing/features/authetication/presentation/views/sign_up_screen.dart';
+import 'package:servicemen_listing/features/authetication/presentation/views/sign_in_screen.dart';
 import 'package:servicemen_listing/features/authetication/presentation/widgets/c_phone_field.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: const Color(0xff207EC2),
+      backgroundColor: const Color(0xff14B4CA),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(child: Gap(size.height * 0.17)),
@@ -32,7 +32,7 @@ class SignInScreen extends StatelessWidget {
                     child: Opacity(
                       opacity: 0.8,
                       child: Image.asset(
-                        AppImages.signIn,
+                        AppImages.signUp,
                         width: 50,
                         height: 50,
                       ),
@@ -47,7 +47,7 @@ class SignInScreen extends StatelessWidget {
       bottomSheet: Container(
         height: 380,
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 26),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -61,7 +61,7 @@ class SignInScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Welcome back!",
+              "Welcome to Swift \nService!",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -69,7 +69,7 @@ class SignInScreen extends StatelessWidget {
             ),
             const Gap(8),
             Text(
-              "Sign in for fast services and new offers.",
+              "Sign up to simplify your services.",
               style: TextStyle(
                   fontSize: 13.5, color: Colors.black.withOpacity(.64)),
             ),
@@ -99,7 +99,7 @@ class SignInScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Not a member?",
+                  "Already a member?",
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.black.withOpacity(.60),
@@ -108,10 +108,10 @@ class SignInScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    CNaviagtion.pushReplacement(context, const SignUpScreen());
+                    CNaviagtion.pushReplacement(context, const SignInScreen());
                   },
                   child: const Text(
-                    "Signup",
+                    "Signin",
                     style: TextStyle(
                       fontSize: 15,
                       color: AppColors.buttonColor,
