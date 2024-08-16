@@ -29,4 +29,5 @@ class AppIcons {
 
   //AUTHETICATION
   static const String india = "assets/icons/india.png";
+  static const String createdUser = "assets/icons/user-created-icon.png";
 }

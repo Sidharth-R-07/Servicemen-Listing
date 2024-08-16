@@ -6,5 +6,7 @@ class OnBordingState with _$OnBordingState {
     required int currentPageIndex,
   }) = _OnBordingState;
 
-  factory OnBordingState.initial() => const OnBordingState(currentPageIndex: 0);
+  factory OnBordingState.initial() => const OnBordingState(
+        currentPageIndex: 0,
+      );
 }

@@ -17,6 +17,8 @@ import '../../../features/authetication/domain/i_authetication_facade.dart'
     as _i466;
 import '../../../features/authetication/infrastructor/i_authetication_impl.dart'
     as _i140;
+import '../../services/local_storage_services.dart' as _i447;
+import '../../services/notification_service.dart' as _i85;
 import 'app_injaction_module.dart' as _i1045;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -36,8 +38,14 @@ Future<_i174.GetIt> init(
     preResolve: true,
   );
   gh.lazySingleton<_i361.Dio>(() => appInjectableModule.dio);
-  gh.lazySingleton<_i466.IAutheticationFacade>(
-      () => _i140.IAutheticationImpl(gh<_i361.Dio>()));
+  gh.lazySingleton<_i85.NotificationService>(
+      () => appInjectableModule.notificationService);
+  gh.lazySingleton<_i447.LocalStorageServices>(
+      () => appInjectableModule.localStorageServices);
+  gh.lazySingleton<_i466.IAutheticationFacade>(() => _i140.IAutheticationImpl(
+        gh<_i361.Dio>(),
+        gh<_i85.NotificationService>(),
+      ));
   return getIt;
 }
 

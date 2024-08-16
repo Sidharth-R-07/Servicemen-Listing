@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:servicemen_listing/core/services/c_naviagtion.dart';
+import 'package:servicemen_listing/core/services/local_storage_services.dart';
+import 'package:servicemen_listing/core/utils/di/injection.dart';
 
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/widgets/c_button.dart';
@@ -28,6 +30,8 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
     super.initState();
   }
 
+  final localStorageService = sl<LocalStorageServices>();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -45,9 +49,9 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
                       .read<OnBordingBloc>()
                       .add(OnBordingEvent.changePage(value));
                 },
-                children: const [
+                children: [
                   OnBordingPageOne(),
-                  OnBordingPageTwo(),
+                  const OnBordingPageTwo(),
                 ],
               ),
               const Positioned(
@@ -71,6 +75,7 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
                               duration: const Duration(milliseconds: 100),
                               curve: Curves.easeIn);
                         } else {
+                          localStorageService.setOnBordingStatus(false);
                           //NAVIGATE TO NEXT SCREEN
                           CNaviagtion.pushReplacement(
                               context, const SignInScreen());

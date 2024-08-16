@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:servicemen_listing/core/services/c_naviagtion.dart';
+import 'package:servicemen_listing/core/services/local_storage_services.dart';
 import 'package:servicemen_listing/core/utils/app_assetes/app_images.dart';
+import 'package:servicemen_listing/core/utils/di/injection.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/features/authetication/presentation/views/sign_in_screen.dart';
 
 class OnBordingPageOne extends StatelessWidget {
-  const OnBordingPageOne({super.key});
+  OnBordingPageOne({super.key});
+  final localStorageService = sl<LocalStorageServices>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +33,7 @@ class OnBordingPageOne extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                   side: BorderSide(color: Colors.white.withOpacity(.5))),
               onPressed: () {
+                localStorageService.setOnBordingStatus(false);
                 CNaviagtion.pushReplacement(context, const SignInScreen());
               },
               child: const Text(

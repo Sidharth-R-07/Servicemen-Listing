@@ -4,7 +4,8 @@ import 'package:pinput/pinput.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 
 class OtpTextField extends StatelessWidget {
-  const OtpTextField({super.key});
+  final TextEditingController controller;
+  const OtpTextField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class OtpTextField extends StatelessWidget {
 
     return Center(
       child: Pinput(
+        controller: controller,
         autofocus: true,
         defaultPinTheme: defaultPinTheme,
         separatorBuilder: (index) => const Gap(16),
