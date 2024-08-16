@@ -24,6 +24,14 @@ class _SignInScreenState extends State<SignInScreen> {
   final formkey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    context
+        .read<AutheticationBloc>()
+        .add(const AutheticationEvent.clearPhoneVerificationData());
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _phoneController.dispose();
     super.dispose();
@@ -32,9 +40,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    context
-        .read<AutheticationBloc>()
-        .add(const AutheticationEvent.clearPhoneVerificationData());
+
     return Scaffold(
       backgroundColor: const Color(0xff207EC2),
       body: CustomScrollView(
@@ -71,6 +77,9 @@ class _SignInScreenState extends State<SignInScreen> {
           if (state.phoneVerificationresult != null) {
             state.phoneVerificationresult!.fold(
               (error) {
+                context
+                    .read<AutheticationBloc>()
+                    .add(const AutheticationEvent.clearPhoneVerificationData());
                 CToast.error(context, message: error.errorMsg);
               },
               (sucess) {
@@ -84,7 +93,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   builder: (ctx) => Padding(
                     padding: EdgeInsets.only(
                         bottom: MediaQuery.of(ctx).viewInsets.bottom),
-                    child: const OtpBottomSheet(),
+                    child: const OtpBottomSheet(
+                      isSignUp: false,
+                    ),
                   ),
                 );
               },
@@ -141,7 +152,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       context.read<AutheticationBloc>()
                         ..add(AutheticationEvent.setPhoneNumber(
                             _phoneController.text))
-                        ..add(const AutheticationEvent.verifyPhoneNumber());
+                        ..add(const AutheticationEvent.verifyPhoneNumber(
+                            isSignUp: false));
                     },
                     child: state.phoneVerificationLoading
                         ? const Row(

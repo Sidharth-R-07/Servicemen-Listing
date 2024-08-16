@@ -5,7 +5,7 @@ import 'package:servicemen_listing/features/authetication/domain/model/phone_ver
 abstract class IAutheticationFacade {
   //PHONE NUMBER VERIFICATION
   FutureResult<PhoneVerificationRespones> phoneVerification(
-      String phoneNumber) {
+      {required String phoneNumber, required bool isSignUp}) {
     throw UnimplementedError("phoneVerification method is not implemented");
   }
 

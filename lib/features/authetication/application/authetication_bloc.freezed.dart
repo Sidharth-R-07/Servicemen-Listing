@@ -19,7 +19,7 @@ mixin _$AutheticationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) setPhoneNumber,
-    required TResult Function() verifyPhoneNumber,
+    required TResult Function(bool isSignUp) verifyPhoneNumber,
     required TResult Function() clearPhoneVerificationData,
     required TResult Function(CreateUserModel createUser) createUser,
     required TResult Function() clearCreateUserData,
@@ -28,7 +28,7 @@ mixin _$AutheticationEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber)? setPhoneNumber,
-    TResult? Function()? verifyPhoneNumber,
+    TResult? Function(bool isSignUp)? verifyPhoneNumber,
     TResult? Function()? clearPhoneVerificationData,
     TResult? Function(CreateUserModel createUser)? createUser,
     TResult? Function()? clearCreateUserData,
@@ -37,7 +37,7 @@ mixin _$AutheticationEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? setPhoneNumber,
-    TResult Function()? verifyPhoneNumber,
+    TResult Function(bool isSignUp)? verifyPhoneNumber,
     TResult Function()? clearPhoneVerificationData,
     TResult Function(CreateUserModel createUser)? createUser,
     TResult Function()? clearCreateUserData,
@@ -162,7 +162,7 @@ class _$SetPhoneNumberImpl implements _SetPhoneNumber {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) setPhoneNumber,
-    required TResult Function() verifyPhoneNumber,
+    required TResult Function(bool isSignUp) verifyPhoneNumber,
     required TResult Function() clearPhoneVerificationData,
     required TResult Function(CreateUserModel createUser) createUser,
     required TResult Function() clearCreateUserData,
@@ -174,7 +174,7 @@ class _$SetPhoneNumberImpl implements _SetPhoneNumber {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber)? setPhoneNumber,
-    TResult? Function()? verifyPhoneNumber,
+    TResult? Function(bool isSignUp)? verifyPhoneNumber,
     TResult? Function()? clearPhoneVerificationData,
     TResult? Function(CreateUserModel createUser)? createUser,
     TResult? Function()? clearCreateUserData,
@@ -186,7 +186,7 @@ class _$SetPhoneNumberImpl implements _SetPhoneNumber {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? setPhoneNumber,
-    TResult Function()? verifyPhoneNumber,
+    TResult Function(bool isSignUp)? verifyPhoneNumber,
     TResult Function()? clearPhoneVerificationData,
     TResult Function(CreateUserModel createUser)? createUser,
     TResult Function()? clearCreateUserData,
@@ -257,6 +257,8 @@ abstract class _$$VerifyPhoneNumberImplCopyWith<$Res> {
   factory _$$VerifyPhoneNumberImplCopyWith(_$VerifyPhoneNumberImpl value,
           $Res Function(_$VerifyPhoneNumberImpl) then) =
       __$$VerifyPhoneNumberImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isSignUp});
 }
 
 /// @nodoc
@@ -266,63 +268,89 @@ class __$$VerifyPhoneNumberImplCopyWithImpl<$Res>
   __$$VerifyPhoneNumberImplCopyWithImpl(_$VerifyPhoneNumberImpl _value,
       $Res Function(_$VerifyPhoneNumberImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isSignUp = null,
+  }) {
+    return _then(_$VerifyPhoneNumberImpl(
+      isSignUp: null == isSignUp
+          ? _value.isSignUp
+          : isSignUp // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
-  const _$VerifyPhoneNumberImpl();
+  const _$VerifyPhoneNumberImpl({required this.isSignUp});
+
+  @override
+  final bool isSignUp;
 
   @override
   String toString() {
-    return 'AutheticationEvent.verifyPhoneNumber()';
+    return 'AutheticationEvent.verifyPhoneNumber(isSignUp: $isSignUp)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$VerifyPhoneNumberImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$VerifyPhoneNumberImpl &&
+            (identical(other.isSignUp, isSignUp) ||
+                other.isSignUp == isSignUp));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isSignUp);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VerifyPhoneNumberImplCopyWith<_$VerifyPhoneNumberImpl> get copyWith =>
+      __$$VerifyPhoneNumberImplCopyWithImpl<_$VerifyPhoneNumberImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) setPhoneNumber,
-    required TResult Function() verifyPhoneNumber,
+    required TResult Function(bool isSignUp) verifyPhoneNumber,
     required TResult Function() clearPhoneVerificationData,
     required TResult Function(CreateUserModel createUser) createUser,
     required TResult Function() clearCreateUserData,
   }) {
-    return verifyPhoneNumber();
+    return verifyPhoneNumber(isSignUp);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber)? setPhoneNumber,
-    TResult? Function()? verifyPhoneNumber,
+    TResult? Function(bool isSignUp)? verifyPhoneNumber,
     TResult? Function()? clearPhoneVerificationData,
     TResult? Function(CreateUserModel createUser)? createUser,
     TResult? Function()? clearCreateUserData,
   }) {
-    return verifyPhoneNumber?.call();
+    return verifyPhoneNumber?.call(isSignUp);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? setPhoneNumber,
-    TResult Function()? verifyPhoneNumber,
+    TResult Function(bool isSignUp)? verifyPhoneNumber,
     TResult Function()? clearPhoneVerificationData,
     TResult Function(CreateUserModel createUser)? createUser,
     TResult Function()? clearCreateUserData,
     required TResult orElse(),
   }) {
     if (verifyPhoneNumber != null) {
-      return verifyPhoneNumber();
+      return verifyPhoneNumber(isSignUp);
     }
     return orElse();
   }
@@ -372,7 +400,13 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
 }
 
 abstract class _VerifyPhoneNumber implements AutheticationEvent {
-  const factory _VerifyPhoneNumber() = _$VerifyPhoneNumberImpl;
+  const factory _VerifyPhoneNumber({required final bool isSignUp}) =
+      _$VerifyPhoneNumberImpl;
+
+  bool get isSignUp;
+  @JsonKey(ignore: true)
+  _$$VerifyPhoneNumberImplCopyWith<_$VerifyPhoneNumberImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -418,7 +452,7 @@ class _$ClearPhoneVerificationDataImpl implements _ClearPhoneVerificationData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) setPhoneNumber,
-    required TResult Function() verifyPhoneNumber,
+    required TResult Function(bool isSignUp) verifyPhoneNumber,
     required TResult Function() clearPhoneVerificationData,
     required TResult Function(CreateUserModel createUser) createUser,
     required TResult Function() clearCreateUserData,
@@ -430,7 +464,7 @@ class _$ClearPhoneVerificationDataImpl implements _ClearPhoneVerificationData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber)? setPhoneNumber,
-    TResult? Function()? verifyPhoneNumber,
+    TResult? Function(bool isSignUp)? verifyPhoneNumber,
     TResult? Function()? clearPhoneVerificationData,
     TResult? Function(CreateUserModel createUser)? createUser,
     TResult? Function()? clearCreateUserData,
@@ -442,7 +476,7 @@ class _$ClearPhoneVerificationDataImpl implements _ClearPhoneVerificationData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? setPhoneNumber,
-    TResult Function()? verifyPhoneNumber,
+    TResult Function(bool isSignUp)? verifyPhoneNumber,
     TResult Function()? clearPhoneVerificationData,
     TResult Function(CreateUserModel createUser)? createUser,
     TResult Function()? clearCreateUserData,
@@ -569,7 +603,7 @@ class _$CreateUserImpl implements _CreateUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) setPhoneNumber,
-    required TResult Function() verifyPhoneNumber,
+    required TResult Function(bool isSignUp) verifyPhoneNumber,
     required TResult Function() clearPhoneVerificationData,
     required TResult Function(CreateUserModel createUser) createUser,
     required TResult Function() clearCreateUserData,
@@ -581,7 +615,7 @@ class _$CreateUserImpl implements _CreateUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber)? setPhoneNumber,
-    TResult? Function()? verifyPhoneNumber,
+    TResult? Function(bool isSignUp)? verifyPhoneNumber,
     TResult? Function()? clearPhoneVerificationData,
     TResult? Function(CreateUserModel createUser)? createUser,
     TResult? Function()? clearCreateUserData,
@@ -593,7 +627,7 @@ class _$CreateUserImpl implements _CreateUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? setPhoneNumber,
-    TResult Function()? verifyPhoneNumber,
+    TResult Function(bool isSignUp)? verifyPhoneNumber,
     TResult Function()? clearPhoneVerificationData,
     TResult Function(CreateUserModel createUser)? createUser,
     TResult Function()? clearCreateUserData,
@@ -699,7 +733,7 @@ class _$ClearCreateUserDataImpl implements _ClearCreateUserData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) setPhoneNumber,
-    required TResult Function() verifyPhoneNumber,
+    required TResult Function(bool isSignUp) verifyPhoneNumber,
     required TResult Function() clearPhoneVerificationData,
     required TResult Function(CreateUserModel createUser) createUser,
     required TResult Function() clearCreateUserData,
@@ -711,7 +745,7 @@ class _$ClearCreateUserDataImpl implements _ClearCreateUserData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber)? setPhoneNumber,
-    TResult? Function()? verifyPhoneNumber,
+    TResult? Function(bool isSignUp)? verifyPhoneNumber,
     TResult? Function()? clearPhoneVerificationData,
     TResult? Function(CreateUserModel createUser)? createUser,
     TResult? Function()? clearCreateUserData,
@@ -723,7 +757,7 @@ class _$ClearCreateUserDataImpl implements _ClearCreateUserData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? setPhoneNumber,
-    TResult Function()? verifyPhoneNumber,
+    TResult Function(bool isSignUp)? verifyPhoneNumber,
     TResult Function()? clearPhoneVerificationData,
     TResult Function(CreateUserModel createUser)? createUser,
     TResult Function()? clearCreateUserData,

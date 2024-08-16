@@ -62,8 +62,8 @@ class AutheticationBloc extends Bloc<AutheticationEvent, AutheticationState> {
   Future<void> _verifyPhoneNumber(
       _VerifyPhoneNumber event, Emitter<AutheticationState> emit) async {
     emit(state.copyWith(phoneVerificationLoading: true));
-    final result =
-        await _autheticationFacade.phoneVerification(state.phoneNumber);
+    final result = await _autheticationFacade.phoneVerification(
+        phoneNumber: state.phoneNumber, isSignUp: event.isSignUp);
 
     result.fold(
       (err) {},

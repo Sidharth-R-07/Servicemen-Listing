@@ -19,16 +19,23 @@ class IAutheticationImpl implements IAutheticationFacade {
   IAutheticationImpl(this._dio, this._notificationService);
   @override
   FutureResult<PhoneVerificationRespones> phoneVerification(
-      String phoneNumber) async {
+      {required String phoneNumber, required bool isSignUp}) async {
     try {
       var formData = FormData.fromMap({'phone_number': phoneNumber});
 
       var response = await _dio.post(ApiUrls.phoneVerification, data: formData);
 
       if (response.statusCode == 200) {
-        _notificationService.showOTPNotification(
-            PhoneVerificationRespones.fromMap(response.data).otp);
-        return right(PhoneVerificationRespones.fromMap(response.data));
+        final phoneVerficationResponse =
+            PhoneVerificationRespones.fromMap(response.data);
+        if (isSignUp && phoneVerficationResponse.user) {
+          return left(
+              const MainFailure.alredyExists(errorMsg: "User already exists"));
+        }
+
+        _notificationService.showOTPNotification(phoneVerficationResponse.otp);
+
+        return right(phoneVerficationResponse);
       }
 
       return left(MainFailure.serverFailure(errorMsg: response.data));

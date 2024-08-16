@@ -15,7 +15,8 @@ import 'package:servicemen_listing/features/authetication/presentation/views/reg
 import 'package:servicemen_listing/features/authetication/presentation/widgets/otp_text_field.dart';
 
 class OtpBottomSheet extends StatefulWidget {
-  const OtpBottomSheet({super.key});
+  final bool isSignUp;
+  const OtpBottomSheet({super.key, required this.isSignUp});
 
   @override
   State<OtpBottomSheet> createState() => _OtpBottomSheetState();
@@ -25,8 +26,7 @@ class _OtpBottomSheetState extends State<OtpBottomSheet> {
   final otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AutheticationBloc, AutheticationState>(
-      listener: (context, state) {},
+    return BlocBuilder<AutheticationBloc, AutheticationState>(
       builder: (context, state) {
         return Container(
           height: 350,
@@ -139,7 +139,8 @@ class _OtpBottomSheetState extends State<OtpBottomSheet> {
                       onPressed: () {
                         if (state.phoneVerificationLoading) return;
                         context.read<AutheticationBloc>().add(
-                              const AutheticationEvent.verifyPhoneNumber(),
+                              AutheticationEvent.verifyPhoneNumber(
+                                  isSignUp: widget.isSignUp),
                             );
                       },
                       child: const Text(

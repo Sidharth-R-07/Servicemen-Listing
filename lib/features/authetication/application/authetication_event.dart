@@ -7,7 +7,9 @@ class AutheticationEvent with _$AutheticationEvent {
       _SetPhoneNumber;
 
   //VERIFY PHONE NUMBER
-  const factory AutheticationEvent.verifyPhoneNumber() = _VerifyPhoneNumber;
+  const factory AutheticationEvent.verifyPhoneNumber({
+    required bool isSignUp,
+  }) = _VerifyPhoneNumber;
 
   //CLEAR PHONE VERIFICATION DATA
   const factory AutheticationEvent.clearPhoneVerificationData() =
