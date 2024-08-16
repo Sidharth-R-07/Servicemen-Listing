@@ -24,14 +24,14 @@ class CategoryFrame extends StatelessWidget {
               height: 50,
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: category.color,
+                color: AppColors.buttonColor.withOpacity(.06),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Image.asset(category.icon),
+              child: Image.network(category.image),
             ),
             const Gap(4),
             Text(
-              category.title,
+              category.name,
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,

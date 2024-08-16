@@ -6,4 +6,7 @@ class ApiUrls {
 
   //CREATE NEW USER
   static const String createUser = "${baseUrl}api/create-user/";
+
+  //FETCH CATEGORY
+  static const String fetchCategory = "${baseUrl}api/categories/";
 }

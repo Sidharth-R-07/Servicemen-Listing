@@ -41,7 +41,7 @@ class CategoryScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        title: Text("${category.title} Specialist's",
+        title: Text("${category.name} Specialist's",
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -76,14 +76,12 @@ class CategoryScreen extends StatelessWidget {
                           ),
                           const Gap(8),
                           Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: const Text(
-                              '12',
-                              style: TextStyle(
+                            padding: const EdgeInsets.all(6),
+                            decoration: const BoxDecoration(
+                                color: Colors.white, shape: BoxShape.circle),
+                            child: Text(
+                              '${category.services[0].servicePeople.length}',
+                              style: const TextStyle(
                                 fontSize: 10,
                                 color: AppColors.primaryColor,
                                 fontWeight: FontWeight.w500,
@@ -122,11 +120,11 @@ class CategoryScreen extends StatelessWidget {
           ),
           SliverList.separated(
               itemBuilder: (context, index) => ServiceMenFrame(
-                    serviceMen: serviceMenList[index],
+                    serviceMen: category.services[0].servicePeople[index],
                     isSaved: false,
                   ),
               separatorBuilder: (context, index) => const Gap(22),
-              itemCount: serviceMenList.length),
+              itemCount: category.services[0].servicePeople.length),
           const SliverToBoxAdapter(
             child: Gap(20),
           ),

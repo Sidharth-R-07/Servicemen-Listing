@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:servicemen_listing/core/utils/app_assetes/app_icons.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/features/app_root/application/app_root_bloc.dart';
+import 'package:servicemen_listing/features/category/application/category_bloc.dart';
 import 'package:servicemen_listing/features/home/presentation/views/home_screen.dart';
 import 'package:servicemen_listing/features/profile/presentation/views/profile_screen.dart';
 import 'package:servicemen_listing/features/saved_items/presentation/views/saved_item_screen.dart';
@@ -18,6 +19,7 @@ class AppRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<CategoryBloc>().add(const CategoryEvent.fetchCategories());
     return BlocBuilder<AppRootBloc, AppRootState>(
       builder: (context, state) {
         return Scaffold(

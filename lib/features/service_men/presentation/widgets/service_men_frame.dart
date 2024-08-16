@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
+import 'package:servicemen_listing/core/widgets/c_network_image.dart';
 import 'package:servicemen_listing/features/service_men/domain/model/service_men_model.dart';
 
 class ServiceMenFrame extends StatelessWidget {
-  final ServiceMenModel serviceMen;
+  final ServicePeople serviceMen;
   final bool isSaved;
   const ServiceMenFrame(
       {super.key, required this.serviceMen, required this.isSaved});
@@ -33,9 +34,8 @@ class ServiceMenFrame extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              serviceMen.image,
-              fit: BoxFit.cover,
+            child: CNetworkImage(
+              imageUrl: serviceMen.profilePicture,
               width: 70,
               height: 80,
             ),
@@ -72,7 +72,7 @@ class ServiceMenFrame extends StatelessWidget {
                       ),
                       const Gap(4),
                       Text(
-                        serviceMen.rating.toString(),
+                        serviceMen.avgRating.toString(),
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -80,7 +80,7 @@ class ServiceMenFrame extends StatelessWidget {
                       ),
                       const Gap(4),
                       Text(
-                        '(${serviceMen.ratingUsersCount})',
+                        '(${serviceMen.reviewCount})',
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,

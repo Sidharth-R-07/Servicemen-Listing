@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
         SliverToBoxAdapter(
           child: Gap(size.height * 0.15),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: ProfileFrame(),
         )
       ],

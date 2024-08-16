@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:servicemen_listing/core/utils/app_assetes/app_images.dart';
 
 class HomeBanners extends StatefulWidget {
-  HomeBanners({super.key});
+  const HomeBanners({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeBannersState createState() => _HomeBannersState();
 }
 
