@@ -19,6 +19,10 @@ import '../../../features/authetication/infrastructor/i_authetication_impl.dart'
     as _i140;
 import '../../../features/category/domain/i_category_facade.dart' as _i851;
 import '../../../features/category/infrastructor/i_category_impl.dart' as _i705;
+import '../../../features/saved_service_men/domain/i_saved_service_men_facade.dart'
+    as _i450;
+import '../../../features/saved_service_men/infrastructor/i_saved_service_men_impl.dart'
+    as _i872;
 import '../../services/local_storage_services.dart' as _i447;
 import '../../services/notification_service.dart' as _i85;
 import 'app_injaction_module.dart' as _i1045;
@@ -44,6 +48,8 @@ Future<_i174.GetIt> init(
       () => appInjectableModule.notificationService);
   gh.lazySingleton<_i447.LocalStorageServices>(
       () => appInjectableModule.localStorageServices);
+  gh.lazySingleton<_i450.ISavedServiceMenFacade>(
+      () => _i872.ISavedServiceMenImpl());
   gh.lazySingleton<_i851.ICategoryFacade>(
       () => _i705.ICategoryImpl(gh<_i361.Dio>()));
   gh.lazySingleton<_i466.IAutheticationFacade>(() => _i140.IAutheticationImpl(

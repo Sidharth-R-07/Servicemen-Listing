@@ -19,32 +19,38 @@ mixin _$CategoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchCategories,
+    required TResult Function(int index) changeTabIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchCategories,
+    TResult? Function(int index)? changeTabIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchCategories,
+    TResult Function(int index)? changeTabIndex,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_ChangeTabIndex value) changeTabIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_ChangeTabIndex value)? changeTabIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_ChangeTabIndex value)? changeTabIndex,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$FetchCategoriesImpl implements _FetchCategories {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchCategories,
+    required TResult Function(int index) changeTabIndex,
   }) {
     return fetchCategories();
   }
@@ -115,6 +122,7 @@ class _$FetchCategoriesImpl implements _FetchCategories {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchCategories,
+    TResult? Function(int index)? changeTabIndex,
   }) {
     return fetchCategories?.call();
   }
@@ -123,6 +131,7 @@ class _$FetchCategoriesImpl implements _FetchCategories {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchCategories,
+    TResult Function(int index)? changeTabIndex,
     required TResult orElse(),
   }) {
     if (fetchCategories != null) {
@@ -135,6 +144,7 @@ class _$FetchCategoriesImpl implements _FetchCategories {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_ChangeTabIndex value) changeTabIndex,
   }) {
     return fetchCategories(this);
   }
@@ -143,6 +153,7 @@ class _$FetchCategoriesImpl implements _FetchCategories {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_ChangeTabIndex value)? changeTabIndex,
   }) {
     return fetchCategories?.call(this);
   }
@@ -151,6 +162,7 @@ class _$FetchCategoriesImpl implements _FetchCategories {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_ChangeTabIndex value)? changeTabIndex,
     required TResult orElse(),
   }) {
     if (fetchCategories != null) {
@@ -165,9 +177,144 @@ abstract class _FetchCategories implements CategoryEvent {
 }
 
 /// @nodoc
+abstract class _$$ChangeTabIndexImplCopyWith<$Res> {
+  factory _$$ChangeTabIndexImplCopyWith(_$ChangeTabIndexImpl value,
+          $Res Function(_$ChangeTabIndexImpl) then) =
+      __$$ChangeTabIndexImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$ChangeTabIndexImplCopyWithImpl<$Res>
+    extends _$CategoryEventCopyWithImpl<$Res, _$ChangeTabIndexImpl>
+    implements _$$ChangeTabIndexImplCopyWith<$Res> {
+  __$$ChangeTabIndexImplCopyWithImpl(
+      _$ChangeTabIndexImpl _value, $Res Function(_$ChangeTabIndexImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$ChangeTabIndexImpl(
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeTabIndexImpl implements _ChangeTabIndex {
+  const _$ChangeTabIndexImpl(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'CategoryEvent.changeTabIndex(index: $index)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeTabIndexImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeTabIndexImplCopyWith<_$ChangeTabIndexImpl> get copyWith =>
+      __$$ChangeTabIndexImplCopyWithImpl<_$ChangeTabIndexImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchCategories,
+    required TResult Function(int index) changeTabIndex,
+  }) {
+    return changeTabIndex(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchCategories,
+    TResult? Function(int index)? changeTabIndex,
+  }) {
+    return changeTabIndex?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchCategories,
+    TResult Function(int index)? changeTabIndex,
+    required TResult orElse(),
+  }) {
+    if (changeTabIndex != null) {
+      return changeTabIndex(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_ChangeTabIndex value) changeTabIndex,
+  }) {
+    return changeTabIndex(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_ChangeTabIndex value)? changeTabIndex,
+  }) {
+    return changeTabIndex?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_ChangeTabIndex value)? changeTabIndex,
+    required TResult orElse(),
+  }) {
+    if (changeTabIndex != null) {
+      return changeTabIndex(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeTabIndex implements CategoryEvent {
+  const factory _ChangeTabIndex(final int index) = _$ChangeTabIndexImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$ChangeTabIndexImplCopyWith<_$ChangeTabIndexImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CategoryState {
   List<CategoryModel> get categoryList => throw _privateConstructorUsedError;
   bool get fetchLoading => throw _privateConstructorUsedError;
+  int get currentTabIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CategoryStateCopyWith<CategoryState> get copyWith =>
@@ -180,7 +327,10 @@ abstract class $CategoryStateCopyWith<$Res> {
           CategoryState value, $Res Function(CategoryState) then) =
       _$CategoryStateCopyWithImpl<$Res, CategoryState>;
   @useResult
-  $Res call({List<CategoryModel> categoryList, bool fetchLoading});
+  $Res call(
+      {List<CategoryModel> categoryList,
+      bool fetchLoading,
+      int currentTabIndex});
 }
 
 /// @nodoc
@@ -198,6 +348,7 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
   $Res call({
     Object? categoryList = null,
     Object? fetchLoading = null,
+    Object? currentTabIndex = null,
   }) {
     return _then(_value.copyWith(
       categoryList: null == categoryList
@@ -208,6 +359,10 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
           ? _value.fetchLoading
           : fetchLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentTabIndex: null == currentTabIndex
+          ? _value.currentTabIndex
+          : currentTabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -220,7 +375,10 @@ abstract class _$$CategoryStateImplCopyWith<$Res>
       __$$CategoryStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CategoryModel> categoryList, bool fetchLoading});
+  $Res call(
+      {List<CategoryModel> categoryList,
+      bool fetchLoading,
+      int currentTabIndex});
 }
 
 /// @nodoc
@@ -236,6 +394,7 @@ class __$$CategoryStateImplCopyWithImpl<$Res>
   $Res call({
     Object? categoryList = null,
     Object? fetchLoading = null,
+    Object? currentTabIndex = null,
   }) {
     return _then(_$CategoryStateImpl(
       categoryList: null == categoryList
@@ -246,6 +405,10 @@ class __$$CategoryStateImplCopyWithImpl<$Res>
           ? _value.fetchLoading
           : fetchLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentTabIndex: null == currentTabIndex
+          ? _value.currentTabIndex
+          : currentTabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -255,7 +418,8 @@ class __$$CategoryStateImplCopyWithImpl<$Res>
 class _$CategoryStateImpl implements _CategoryState {
   const _$CategoryStateImpl(
       {required final List<CategoryModel> categoryList,
-      required this.fetchLoading})
+      required this.fetchLoading,
+      required this.currentTabIndex})
       : _categoryList = categoryList;
 
   final List<CategoryModel> _categoryList;
@@ -268,10 +432,12 @@ class _$CategoryStateImpl implements _CategoryState {
 
   @override
   final bool fetchLoading;
+  @override
+  final int currentTabIndex;
 
   @override
   String toString() {
-    return 'CategoryState(categoryList: $categoryList, fetchLoading: $fetchLoading)';
+    return 'CategoryState(categoryList: $categoryList, fetchLoading: $fetchLoading, currentTabIndex: $currentTabIndex)';
   }
 
   @override
@@ -282,12 +448,17 @@ class _$CategoryStateImpl implements _CategoryState {
             const DeepCollectionEquality()
                 .equals(other._categoryList, _categoryList) &&
             (identical(other.fetchLoading, fetchLoading) ||
-                other.fetchLoading == fetchLoading));
+                other.fetchLoading == fetchLoading) &&
+            (identical(other.currentTabIndex, currentTabIndex) ||
+                other.currentTabIndex == currentTabIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_categoryList), fetchLoading);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_categoryList),
+      fetchLoading,
+      currentTabIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -299,12 +470,15 @@ class _$CategoryStateImpl implements _CategoryState {
 abstract class _CategoryState implements CategoryState {
   const factory _CategoryState(
       {required final List<CategoryModel> categoryList,
-      required final bool fetchLoading}) = _$CategoryStateImpl;
+      required final bool fetchLoading,
+      required final int currentTabIndex}) = _$CategoryStateImpl;
 
   @override
   List<CategoryModel> get categoryList;
   @override
   bool get fetchLoading;
+  @override
+  int get currentTabIndex;
   @override
   @JsonKey(ignore: true)
   _$$CategoryStateImplCopyWith<_$CategoryStateImpl> get copyWith =>

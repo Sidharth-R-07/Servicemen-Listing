@@ -11,6 +11,8 @@ import 'package:servicemen_listing/features/authetication/domain/i_authetication
 import 'package:servicemen_listing/features/category/application/category_bloc.dart';
 import 'package:servicemen_listing/features/category/domain/i_category_facade.dart';
 import 'package:servicemen_listing/features/onbording/application/on_bording_bloc.dart';
+import 'package:servicemen_listing/features/saved_service_men/application/saved_service_men_bloc.dart';
+import 'package:servicemen_listing/features/saved_service_men/domain/i_saved_service_men_facade.dart';
 import 'package:servicemen_listing/features/splash/presentation/views/splash_screen.dart';
 
 Future<void> main() async {
@@ -38,6 +40,10 @@ class MyApp extends StatelessWidget {
 
         //CATEGORY BLOC
         BlocProvider(create: (_) => CategoryBloc(sl<ICategoryFacade>())),
+
+        //SAVED SERVICE MEN BLOC
+        BlocProvider(
+            create: (_) => SavedServiceMenBloc(sl<ISavedServiceMenFacade>())),
       ],
       child: MaterialApp(
         title: AppDetails.appName,

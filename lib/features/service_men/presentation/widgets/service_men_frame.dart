@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/widgets/c_network_image.dart';
+import 'package:servicemen_listing/features/saved_service_men/application/saved_service_men_bloc.dart';
 import 'package:servicemen_listing/features/service_men/domain/model/service_men_model.dart';
 
 class ServiceMenFrame extends StatelessWidget {
   final ServicePeople serviceMen;
-  final bool isSaved;
-  const ServiceMenFrame(
-      {super.key, required this.serviceMen, required this.isSaved});
+  const ServiceMenFrame({super.key, required this.serviceMen});
 
   @override
   Widget build(BuildContext context) {
@@ -93,16 +93,37 @@ class ServiceMenFrame extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          if (isSaved)
-            const Icon(
-              Icons.bookmark_rounded,
-              color: AppColors.buttonColor,
-            )
-          else
-            const Icon(
-              Icons.bookmark_border_rounded,
-              color: AppColors.buttonColor,
-            ),
+          BlocBuilder<SavedServiceMenBloc, SavedServiceMenState>(
+            builder: (context, state) {
+              final isSaved = state.savedServiceMenList
+                  .any((element) => element.id == serviceMen.id);
+              if (isSaved) {
+                return IconButton(
+                  onPressed: () {
+                    context.read<SavedServiceMenBloc>().add(
+                        SavedServiceMenEvent.removeFromSavedLoacalStorage(
+                            servicePeople: serviceMen));
+                  },
+                  icon: const Icon(
+                    Icons.bookmark_rounded,
+                    color: AppColors.buttonColor,
+                  ),
+                );
+              }
+
+              return IconButton(
+                onPressed: () {
+                  context.read<SavedServiceMenBloc>().add(
+                      SavedServiceMenEvent.addToSavedLoacalStorage(
+                          servicePeople: serviceMen));
+                },
+                icon: const Icon(
+                  Icons.bookmark_border_rounded,
+                  color: AppColors.buttonColor,
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

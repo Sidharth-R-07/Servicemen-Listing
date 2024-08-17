@@ -1,4 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:hive_flutter/adapters.dart';
+part 'service_men_model.g.dart';
+
 class ServiceMenModel {
   final String name;
   final String image;
@@ -58,15 +61,28 @@ class Service {
   }
 }
 
-class ServicePeople {
+@HiveType(typeId: 0)
+class ServicePeople extends HiveObject {
+  @HiveField(0)
   int id;
-  double avgRating;
-  int reviewCount;
-  String name;
-  String profilePicture;
-  DateTime created;
-  int service;
 
+  @HiveField(1)
+  double avgRating;
+
+  @HiveField(2)
+  int reviewCount;
+
+  @HiveField(3)
+  String name;
+
+  @HiveField(4)
+  String profilePicture;
+
+  @HiveField(5)
+  DateTime created;
+
+  @HiveField(6)
+  int service;
   ServicePeople({
     required this.id,
     required this.avgRating,
