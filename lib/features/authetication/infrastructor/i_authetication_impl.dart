@@ -15,7 +15,6 @@ import 'package:servicemen_listing/features/authetication/domain/model/phone_ver
 class IAutheticationImpl implements IAutheticationFacade {
   final Dio _dio;
   final NotificationService _notificationService;
-
   IAutheticationImpl(this._dio, this._notificationService);
   @override
   FutureResult<PhoneVerificationRespones> phoneVerification(

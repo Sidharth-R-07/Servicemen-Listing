@@ -5,6 +5,7 @@ import 'package:servicemen_listing/core/services/local_storage_services.dart';
 import 'package:servicemen_listing/core/utils/app_assetes/app_icons.dart';
 import 'package:servicemen_listing/core/utils/di/injection.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
+import 'package:servicemen_listing/features/app_root/presentation/views/app_root.dart';
 import 'package:servicemen_listing/features/authetication/presentation/views/sign_in_screen.dart';
 import 'package:servicemen_listing/features/onbording/presentation/views/on_bording_screen.dart';
 
@@ -13,8 +14,15 @@ class SplashScreen extends StatelessWidget {
   final localStorageService = sl<LocalStorageServices>();
   Future<void> _navigateFn(BuildContext context) async {
     final showOnBording = await localStorageService.getOnBordingStatus();
+    final isLogined = await localStorageService.getLoginStatus();
 
     Future.delayed(const Duration(seconds: 3), () {
+      //CHECKING LOGIN STATUS
+      if (isLogined) {
+        CNaviagtion.pushAndRemoveUntil(context, const AppRoot());
+        return;
+      }
+
       //IF IS USER FIRST TIME
       if (showOnBording) {
         CNaviagtion.pushAndRemoveUntil(context, const OnBordingScreen());

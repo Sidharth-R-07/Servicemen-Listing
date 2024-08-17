@@ -6,6 +6,7 @@ import 'package:servicemen_listing/features/app_root/application/app_root_bloc.d
 import 'package:servicemen_listing/features/category/application/category_bloc.dart';
 import 'package:servicemen_listing/features/home/presentation/views/home_screen.dart';
 import 'package:servicemen_listing/features/profile/presentation/views/profile_screen.dart';
+import 'package:servicemen_listing/features/saved_service_men/application/saved_service_men_bloc.dart';
 import 'package:servicemen_listing/features/saved_service_men/presentation/views/saved_item_screen.dart';
 
 class AppRoot extends StatelessWidget {
@@ -19,7 +20,7 @@ class AppRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<CategoryBloc>().add(const CategoryEvent.fetchCategories());
+    _fetchData(context);
     return BlocBuilder<AppRootBloc, AppRootState>(
       builder: (context, state) {
         return Scaffold(
@@ -79,5 +80,12 @@ class AppRoot extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _fetchData(BuildContext context) {
+    context.read<CategoryBloc>().add(const CategoryEvent.fetchCategories());
+    context
+        .read<SavedServiceMenBloc>()
+        .add(const SavedServiceMenEvent.fetchAllSavedServiceMen());
   }
 }

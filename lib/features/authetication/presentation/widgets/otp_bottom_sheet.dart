@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:servicemen_listing/core/services/c_naviagtion.dart';
 import 'package:servicemen_listing/core/services/c_toast.dart';
+import 'package:servicemen_listing/core/services/local_storage_services.dart';
+import 'package:servicemen_listing/core/utils/di/injection.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
 import 'package:servicemen_listing/core/widgets/c_button.dart';
@@ -24,6 +26,8 @@ class OtpBottomSheet extends StatefulWidget {
 
 class _OtpBottomSheetState extends State<OtpBottomSheet> {
   final otpController = TextEditingController();
+
+  final localStorageService = sl<LocalStorageServices>();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AutheticationBloc, AutheticationState>(
@@ -99,6 +103,7 @@ class _OtpBottomSheetState extends State<OtpBottomSheet> {
                     CNaviagtion.push(context, const RegistertionScreen());
                     return;
                   } else {
+                    localStorageService.setLoginStatus(true);
                     CToast.success(context, message: "Login Success");
                     Navigator.of(context).pop();
                     CNaviagtion.pushAndRemoveUntil(context, const AppRoot());

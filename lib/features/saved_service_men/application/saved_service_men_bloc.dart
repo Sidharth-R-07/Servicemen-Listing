@@ -28,7 +28,7 @@ class SavedServiceMenBloc
     _FetchAllSavedServiceMen event,
     Emitter<SavedServiceMenState> emit,
   ) async {
-    emit(state.copyWith(fetchLaoding: true));
+    emit(state.copyWith(fetchLaoding: true, savedServiceMenList: []));
     final result = await _iSavedServiceMenFacade.getAllSavedServiceMen();
     result.fold(
       (l) => emit(state.copyWith(fetchLaoding: false)),

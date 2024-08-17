@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:servicemen_listing/core/services/c_naviagtion.dart';
+import 'package:servicemen_listing/core/services/local_storage_services.dart';
 import 'package:servicemen_listing/core/utils/app_assetes/app_icons.dart';
 import 'package:servicemen_listing/core/utils/app_assetes/app_images.dart';
+import 'package:servicemen_listing/core/utils/di/injection.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
+import 'package:servicemen_listing/features/authetication/presentation/views/sign_in_screen.dart';
 
 class ProfileFrame extends StatelessWidget {
-  const ProfileFrame({super.key});
+  ProfileFrame({super.key});
 
+  final localStorageService = sl<LocalStorageServices>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -54,7 +59,10 @@ class ProfileFrame extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             side: const BorderSide(color: AppColors.buttonColor, width: .8),
           ),
-          onPressed: () {},
+          onPressed: () {
+            localStorageService.setLoginStatus(false);
+            CNaviagtion.pushAndRemoveUntil(context, const SignInScreen());
+          },
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,

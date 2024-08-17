@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:servicemen_listing/core/services/c_naviagtion.dart';
 import 'package:servicemen_listing/core/services/c_toast.dart';
+import 'package:servicemen_listing/core/services/local_storage_services.dart';
+import 'package:servicemen_listing/core/utils/di/injection.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/core/widgets/c_button.dart';
 import 'package:servicemen_listing/features/app_root/presentation/views/app_root.dart';
@@ -26,6 +28,8 @@ class _RegistertionScreenState extends State<RegistertionScreen> {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
+
+  final localStorageService = sl<LocalStorageServices>();
 
   @override
   void dispose() {
@@ -53,6 +57,7 @@ class _RegistertionScreenState extends State<RegistertionScreen> {
               CToast.error(context, message: "An error occured:${l.errorMsg}");
             },
             (r) {
+              localStorageService.setLoginStatus(true);
               context
                   .read<AutheticationBloc>()
                   .add(const AutheticationEvent.clearCreateUserData());
