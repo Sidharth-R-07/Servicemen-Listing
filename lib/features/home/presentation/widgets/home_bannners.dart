@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:servicemen_listing/core/utils/app_assetes/app_images.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:servicemen_listing/core/widgets/c_network_image.dart';
+import 'package:servicemen_listing/core/widgets/c_shimmer.dart';
+import 'package:servicemen_listing/features/banners/application/banners_bloc.dart';
 
 class HomeBanners extends StatefulWidget {
   const HomeBanners({super.key});
@@ -11,22 +14,14 @@ class HomeBanners extends StatefulWidget {
 }
 
 class _HomeBannersState extends State<HomeBanners> {
-  final List<String> banners = [
-    AppImages.bannerOne,
-    AppImages.bannerTwo,
-    AppImages.bannerThree,
-  ];
-
   int _currentIndex = 0;
   Timer? _timer;
 
-  @override
-  void initState() {
-    super.initState();
-    _startBannerTimer();
-  }
-
   void _startBannerTimer() {
+    final banners = context.read<BannersBloc>().state.banners;
+
+    if (banners.isEmpty) return;
+
     _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
       setState(() {
         _currentIndex = (_currentIndex + 1) % banners.length;
@@ -42,29 +37,44 @@ class _HomeBannersState extends State<HomeBanners> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 140,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: Stack(
-        children: [
-          AnimatedSwitcher(
-            duration: const Duration(seconds: 1),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return FadeTransition(
-                opacity: animation,
-                child: child,
-              );
-            },
-            child: Image.asset(
-              banners[_currentIndex],
-              key: ValueKey<int>(_currentIndex),
-              fit: BoxFit.contain,
-              width: double.infinity,
-              height: 160,
-            ),
-          ),
-        ],
-      ),
+    return BlocConsumer<BannersBloc, BannersState>(
+      listener: (context, state) {
+        if (state.banners.isNotEmpty && _timer == null) {
+          _startBannerTimer();
+        }
+      },
+      builder: (context, state) {
+        return Container(
+          height: 140,
+          margin: const EdgeInsets.symmetric(horizontal: 10),
+          child: state.fetchLoading && state.banners.isEmpty
+              ? const CShimmer()
+              : Stack(
+                  children: [
+                    if (state.banners.isNotEmpty)
+                      AnimatedSwitcher(
+                        duration: const Duration(seconds: 1),
+                        transitionBuilder:
+                            (Widget child, Animation<double> animation) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: CNetworkImage(
+                            imageUrl: state.banners[_currentIndex].image,
+                            key: ValueKey<int>(_currentIndex),
+                            width: double.infinity,
+                            height: 160,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+        );
+      },
     );
   }
 }

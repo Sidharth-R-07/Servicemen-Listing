@@ -8,6 +8,8 @@ import 'package:servicemen_listing/core/utils/theme/app_fonts.dart';
 import 'package:servicemen_listing/features/app_root/application/app_root_bloc.dart';
 import 'package:servicemen_listing/features/authetication/application/authetication_bloc.dart';
 import 'package:servicemen_listing/features/authetication/domain/i_authetication_facade.dart';
+import 'package:servicemen_listing/features/banners/application/banners_bloc.dart';
+import 'package:servicemen_listing/features/banners/domain/i_banner_facade.dart';
 import 'package:servicemen_listing/features/category/application/category_bloc.dart';
 import 'package:servicemen_listing/features/category/domain/i_category_facade.dart';
 import 'package:servicemen_listing/features/onbording/application/on_bording_bloc.dart';
@@ -44,6 +46,9 @@ class MyApp extends StatelessWidget {
         //SAVED SERVICE MEN BLOC
         BlocProvider(
             create: (_) => SavedServiceMenBloc(sl<ISavedServiceMenFacade>())),
+
+        //BANNER BLOC
+        BlocProvider(create: (_) => BannersBloc(sl<IBannerFacade>())),
       ],
       child: MaterialApp(
         title: AppDetails.appName,

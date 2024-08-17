@@ -9,4 +9,7 @@ class ApiUrls {
 
   //FETCH CATEGORY
   static const String fetchCategory = "${baseUrl}api/categories/";
+
+  //FETCH BANNERS
+  static const String fetchBanners = "${baseUrl}api/banners/";
 }

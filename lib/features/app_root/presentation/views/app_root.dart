@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:servicemen_listing/core/utils/app_assetes/app_icons.dart';
 import 'package:servicemen_listing/core/utils/theme/app_colors.dart';
 import 'package:servicemen_listing/features/app_root/application/app_root_bloc.dart';
+import 'package:servicemen_listing/features/banners/application/banners_bloc.dart';
 import 'package:servicemen_listing/features/category/application/category_bloc.dart';
 import 'package:servicemen_listing/features/home/presentation/views/home_screen.dart';
 import 'package:servicemen_listing/features/profile/presentation/views/profile_screen.dart';
@@ -83,9 +84,15 @@ class AppRoot extends StatelessWidget {
   }
 
   void _fetchData(BuildContext context) {
+    //FETCHING CATEGORY
     context.read<CategoryBloc>().add(const CategoryEvent.fetchCategories());
+
+    //FETCHING SAVED ITEMS
     context
         .read<SavedServiceMenBloc>()
         .add(const SavedServiceMenEvent.fetchAllSavedServiceMen());
+
+    //FETCH BANNERS
+    context.read<BannersBloc>().add(const BannersEvent.fetchBanners());
   }
 }

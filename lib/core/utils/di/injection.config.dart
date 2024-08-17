@@ -17,6 +17,8 @@ import '../../../features/authetication/domain/i_authetication_facade.dart'
     as _i466;
 import '../../../features/authetication/infrastructor/i_authetication_impl.dart'
     as _i140;
+import '../../../features/banners/domain/i_banner_facade.dart' as _i310;
+import '../../../features/banners/infrastructor/i_banner_impl.dart' as _i217;
 import '../../../features/category/domain/i_category_facade.dart' as _i851;
 import '../../../features/category/infrastructor/i_category_impl.dart' as _i705;
 import '../../../features/saved_service_men/domain/i_saved_service_men_facade.dart'
@@ -48,6 +50,8 @@ Future<_i174.GetIt> init(
       () => appInjectableModule.notificationService);
   gh.lazySingleton<_i447.LocalStorageServices>(
       () => appInjectableModule.localStorageServices);
+  gh.lazySingleton<_i310.IBannerFacade>(
+      () => _i217.IBannerImpl(gh<_i361.Dio>()));
   gh.lazySingleton<_i450.ISavedServiceMenFacade>(
       () => _i872.ISavedServiceMenImpl());
   gh.lazySingleton<_i851.ICategoryFacade>(
