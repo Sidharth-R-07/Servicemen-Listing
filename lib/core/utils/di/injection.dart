@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:servicemen_listing/features/service_men/domain/model/service_men_model.dart';
 
 import 'injection.config.dart';
@@ -9,8 +8,8 @@ import 'injection.config.dart';
 final GetIt sl = GetIt.instance;
 
 @InjectableInit(
-  initializerName: 'init', // default init
-  preferRelativeImports: true, // default true
+  initializerName: 'init',
+  preferRelativeImports: true,
   asExtension: false,
 )
 Future<void> configureDependency() async {
@@ -25,10 +24,12 @@ Future<void> configureDependency() async {
     Hive.registerAdapter(ServicePeopleAdapter());
   }
   await Hive.openBox<ServicePeople>('service_people_box');
-
-  final notificationPermissionStatus = await Permission.notification.isGranted;
-
-  if (!notificationPermissionStatus) {
-    await Permission.notification.request();
-  }
 }
+
+
+
+  // final notificationPermissionStatus = await Permission.notification.isGranted;
+
+  // if (!notificationPermissionStatus) {
+  //   await Permission.notification.request();
+  // }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:servicemen_listing/core/widgets/c_network_image.dart';
@@ -37,8 +38,12 @@ class _HomeBannersState extends State<HomeBanners> {
 
   @override
   Widget build(BuildContext context) {
+    if (_timer == null) {
+      _startBannerTimer();
+    }
     return BlocConsumer<BannersBloc, BannersState>(
       listener: (context, state) {
+        log('Banner State: $state');
         if (state.banners.isNotEmpty && _timer == null) {
           _startBannerTimer();
         }

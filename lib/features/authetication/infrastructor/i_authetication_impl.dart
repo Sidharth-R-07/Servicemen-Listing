@@ -32,7 +32,7 @@ class IAutheticationImpl implements IAutheticationFacade {
               const MainFailure.alredyExists(errorMsg: "User already exists"));
         }
 
-        _notificationService.showOTPNotification(phoneVerficationResponse.otp);
+        // _notificationService.showOTPNotification(phoneVerficationResponse.otp);
 
         return right(phoneVerficationResponse);
       }

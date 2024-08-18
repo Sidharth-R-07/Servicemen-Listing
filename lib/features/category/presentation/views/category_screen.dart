@@ -13,6 +13,7 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<CategoryBloc>().add(const CategoryEvent.changeTabIndex(0));
     return Scaffold(
       backgroundColor: AppColors.scaffoldBg,
       appBar: AppBar(
@@ -49,13 +50,14 @@ class CategoryScreen extends StatelessWidget {
               color: AppColors.primaryColor,
             )),
       ),
-      body: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(
-            child: Gap(8),
-          ),
-          SliverToBoxAdapter(
-            child: DefaultTabController(
+      body: BlocBuilder<CategoryBloc, CategoryState>(
+        builder: (context, state) => CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(
+              child: Gap(8),
+            ),
+            SliverToBoxAdapter(
+                child: DefaultTabController(
               length: category.services.length,
               child: ButtonsTabBar(
                 onTap: (index) {
@@ -63,32 +65,44 @@ class CategoryScreen extends StatelessWidget {
                       .read<CategoryBloc>()
                       .add(CategoryEvent.changeTabIndex(index));
                 },
-                tabs: category.services
-                    .map(
-                      (e) => Tab(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                e.name,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
-                                ),
+                tabs: category.services.asMap().entries.map(
+                  (entry) {
+                    int index = entry.key;
+                    var service = entry.value;
+
+                    final servicePeoples = service.servicePeople
+                        .where(
+                          (people) => people.service == service.id,
+                        )
+                        .toList();
+                    return Tab(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              service.name,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: state.currentTabIndex == index
+                                    ? Colors.white
+                                    : Colors.black,
                               ),
-                              const Gap(8),
+                            ),
+                            if (state.currentTabIndex == index) const Gap(8),
+                            if (state.currentTabIndex == index)
                               Container(
                                 padding: const EdgeInsets.all(6),
                                 decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle),
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
                                 child: Text(
-                                  '${category.services[0].servicePeople.length}',
+                                  '${servicePeoples.length}',
                                   style: const TextStyle(
                                     fontSize: 10,
                                     color: AppColors.primaryColor,
@@ -96,12 +110,12 @@ class CategoryScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                          ],
                         ),
                       ),
-                    )
-                    .toList(),
+                    );
+                  },
+                ).toList(),
                 backgroundColor: AppColors.buttonColor,
                 unselectedBackgroundColor: AppColors.scaffoldBg,
                 borderColor: AppColors.primaryColor,
@@ -119,33 +133,35 @@ class CategoryScreen extends StatelessWidget {
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               ),
+            )),
+            const SliverToBoxAdapter(
+              child: Gap(20),
             ),
-          ),
-          const SliverToBoxAdapter(
-            child: Gap(20),
-          ),
-          if (category.services[0].servicePeople.isEmpty)
-            const SliverFillRemaining(
-              hasScrollBody: false,
-              child: Center(
-                  child: Text(
-                "No Service People Available Now!",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              )),
-            )
-          else
-            SliverList.separated(
-                itemBuilder: (context, index) => ServiceMenFrame(
-                    serviceMen: category.services[0].servicePeople[index]),
-                separatorBuilder: (context, index) => const Gap(22),
-                itemCount: category.services[0].servicePeople.length),
-          const SliverToBoxAdapter(
-            child: Gap(20),
-          ),
-        ],
+            if (category.services[state.currentTabIndex].servicePeople.isEmpty)
+              const SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(
+                    child: Text(
+                  "No Service People Available Now!",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )),
+              )
+            else
+              SliverList.separated(
+                  itemBuilder: (context, index) => ServiceMenFrame(
+                      serviceMen: category.services[state.currentTabIndex]
+                          .servicePeople[index]),
+                  separatorBuilder: (context, index) => const Gap(22),
+                  itemCount: category
+                      .services[state.currentTabIndex].servicePeople.length),
+            const SliverToBoxAdapter(
+              child: Gap(20),
+            ),
+          ],
+        ),
       ),
     );
   }
